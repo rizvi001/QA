@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:local="clr-namespace:QA.CustomControl"
+    xmlns:viewmodel="clr-namespace:QA.ViewModel"
+    ios:Page.UseSafeArea="true"
+    x:Class="QA.Views.QandA">
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowDefinitions="Auto,*,Auto" >
+            <!--Label & Searchbar grid-->
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="0" RowDefinitions="Auto,Auto,Auto" >
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                     Grid.Row="0"
+                     ColumnDefinitions="Auto,*" Margin="10,0,0,0">
+                    <Image Source="BackArrow"
+                           Grid.Column="0"
+                           Aspect="AspectFit"
+                           Margin="10,15,0,0"
+                    />
+                    <Label Text="Question &amp; Answer"
+                           FontFamily="{StaticResource Key=MontserratSemiBold}"
+                           FontAttributes="Bold"
+                           Grid.Column="1"
+                           TextColor="Black"
+                           FontSize="18"
+                           Margin="10,12,0,0"
+                    />
+
+                </Grid>
+                <Grid Grid.Row="1" HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      BackgroundColor="#E0E0E0" HeightRequest="2"/>
+                   
+                <!--Grid for search bar-->
+                    <Frame Grid.Row="2"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="FillAndExpand"
+                       BorderColor="LightGray"
+                       Margin="10,10"
+                       HasShadow="False"
+                       Padding="0"
+                       BackgroundColor="#D5DDE0"
+                       >
+
+                        <Grid ColumnDefinitions="Auto,*"
+                          HorizontalOptions="FillAndExpand"
+                          VerticalOptions="FillAndExpand"
+                          Padding="0"
+                          >
+
+                            <Image Source="SearchQA"
+                                Grid.Column="0"
+                                Aspect="AspectFit"
+                                Margin="8"
+                            />
+                            <local:CustomEntry
+                                HorizontalTextAlignment="Start"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand"
+                                Grid.Column="1"
+                                Placeholder="Search your Question here"
+                                TextChanged="CustomEntry_TextChanged"
+                                FontFamily="{StaticResource Key=MontserratSemiBold}"
+                            />
+                        </Grid>
+
+                </Frame>
+
+            </Grid>
+            <!--QandA-->
+            <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="10,0" RowSpacing="0" Padding="0" >
+
+                    <ScrollView>
+                        <local:RepeaterView
+                            x:Name="MQuestion"
+                            ItemsSource="{Binding MProductQuestionAnswer}">
+                            <local:RepeaterView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid HorizontalOptions="FillAndExpand"
+                                          VerticalOptions="FillAndExpand"
+                                          RowDefinitions="Auto,Auto,Auto"
+                                          Padding="0"
+                                          >
+
+                                         <Grid Grid.Row="0" ColumnDefinitions="Auto,*" Margin="10,0"
+                                               VerticalOptions="FillAndExpand"
+                                               HorizontalOptions="FillAndExpand"
+                                               Padding="0"
+                                               
+                                                >
+                                             
+                                                <Label
+                                                    Grid.Column="0"
+                                                    FontSize="Medium"
+                                                    FontFamily="{StaticResource Key=MontserratSemiBold}"
+                                                    Text="Q: "
+                                                    TextColor="Black"
+                                                />
+                                                <Label
+                                                    Grid.Column="1"
+                                                    FontSize="Medium"
+                                                    Text="{Binding question}"
+                                                    FontFamily="{StaticResource Key=MontserratSemiBold}"
+                                                    FontAttributes="Bold"
+                                                    TextColor="Black">
+
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                                                    </Label.GestureRecognizers>
+
+                                                </Label>
+                                        </Grid>
+
+                                        <Grid Grid.Row="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+
+                                                <local:RepeaterView ItemsSource="{Binding m_ProductQuestion_Answers}" >
+                                                     <local:RepeaterView.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Grid HorizontalOptions="FillAndExpand"
+                                                                  VerticalOptions="FillAndExpand"
+                                                                  RowDefinitions="Auto,Auto,Auto"
+                                                                  Margin="0,0,0,15"
+                                                                  Padding="0"
+                                                                  >
+                                                                                                       
+                                                                        <Grid
+                                                                            Grid.Row="0"
+                                                                            ColumnDefinitions="Auto,*" Margin="10,0"
+                                                                            VerticalOptions="FillAndExpand"
+                                                                            HorizontalOptions="FillAndExpand">
+
+
+                                                                                <Label
+                                                                                    Grid.Column="0"
+                                                                                    FontSize="Medium"
+                                                                                    Text="A: "
+                                                                                    FontFamily="{StaticResource Key=MontserratLight}"
+                                                                                    TextColor="Black"
+                                                                                />
+                                                                                <Label
+                                                                                    Grid.Column="1"
+                                                                                    FontSize="Medium"
+                                                                                    Text="{Binding answers}"
+                                                                                    FontFamily="{StaticResource Key=MontserratLight}"
+                                                                                   TextColor="Black"
+                                                                                />
+                                                                        </Grid>
+                                                                        <Label  Margin="10,0" Text="{Binding name}"
+                                                                                FontFamily="{StaticResource Key=MontserratLight}"
+                                                                               Grid.Row="1"
+                                                                        />
+                                                                        <Grid Grid.Row="2" Margin="10,0,0,0"
+                                                                              ColumnDefinitions="Auto,*" 
+                                                                              HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                                              <Image Grid.Column="0"
+                                                                                     Source="Certified"
+                                                                                     Aspect="AspectFit"
+                                                                              />
+                                                                              <Label Grid.Column="1"
+                                                                                     Text="Certified Buyer"
+                                                                                     FontFamily="{StaticResource Key=MontserratLight}"
+                                                                              />
+                                                                        </Grid>
+                                                            </Grid>
+                                                          
+
+
+
+                                                        </DataTemplate>
+
+                                                    </local:RepeaterView.ItemTemplate>
+                                                </local:RepeaterView>
+                                        </Grid>
+
+                                        <Grid Grid.Row="2"
+                                              BackgroundColor="#E0E0E0"
+                                              HeightRequest="1"
+                                              Margin="0"
+                                        />
+                                    </Grid>
+                                </DataTemplate>
+                            </local:RepeaterView.ItemTemplate>
+                        </local:RepeaterView>
+                    </ScrollView>
+            </Grid>
+            <!--Button for Post Question-->
+
+            <Grid Grid.Row="2" HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand"
+                  RowDefinitions="Auto,Auto">
+                <Label
+                    Grid.Row="0"
+                    Text="Did not get the answer you are looking for?"
+                    FontFamily="{StaticResource Key=MontserratSemiBold}"
+                    HorizontalTextAlignment="Center"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                />
+                <Button Grid.Row="1"
+                        TextColor="Black"
+                        FontFamily="{StaticResource Key=MontserratBold}"
+                        Text="Post your question"
+                        FontAttributes="Bold"
+                        Margin="10"
+                        BorderColor="LightGray"
+                        BackgroundColor="White"
+                        BorderWidth="1"
+                        Command="{Binding PostQuestionCommand}"
+                />
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

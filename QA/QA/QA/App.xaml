@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QA.App">
+    <Application.Resources>
+         <OnPlatform x:Key="MontserratRegular" x:TypeArguments="x:String">
+            <On Platform="Android" Value="Montserrat-Black.ttf#Montserrat-Black" />
+                <On Platform="iOS" Value="Montserrat-Black" />
+        </OnPlatform>
+
+        <OnPlatform x:Key="MontserratBold" x:TypeArguments="x:String">
+            <On Platform="Android" Value="Montserrat-Bold.ttf#Montserrat-Bold" />
+            <On Platform="iOS" Value="Montserrat-Bold" />
+        </OnPlatform>
+
+        <OnPlatform x:Key="MontserratLight" x:TypeArguments="x:String">
+            <On Platform="Android" Value="Montserrat-Light.ttf#Montserrat-Light" />
+            <On Platform="iOS" Value="Montserrat-Light" />
+        </OnPlatform>
+
+        <OnPlatform x:Key="MontserratSemiBold" x:TypeArguments="x:String">
+            <On Platform="Android" Value="Montserrat-SemiBold.ttf#Montserrat-SemiBold" />
+            <On Platform="iOS" Value="Montserrat-SemiBold" />
+        </OnPlatform>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" xmlns:local="clr-namespace:QA.CustomControl" xmlns:views="clr-namespace:QA.Views"
+    ios:Page.UseSafeArea="true"
+    x:Class="QA.Views.PostQuestion">
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  RowDefinitions="Auto,Auto,Auto,Auto">
+            <!--Cross Button & Write Question Label-->
+            <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="10,10,0,0" ColumnDefinitions="Auto,Auto">
+                <ImageButton
+                    Source="Cross"
+                    Aspect="AspectFit"
+                    Grid.Column="0"
+                    BackgroundColor="Transparent"
+                    Command="{Binding MoveBack}"
+                    Margin="10,0,0,0"
+                />
+                <Label
+                    Grid.Column="1"
+                    Text="Write question"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="StartAndExpand"
+                    VerticalTextAlignment="Start"
+                    Margin="10,0,0,0"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    TextColor="Black"
+                    FontFamily="{StaticResource Key=MontserratBold}"
+
+                />
+            </Grid>
+            <Grid Grid.Row="1" HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      BackgroundColor="#E0E0E0" HeightRequest="2"/>
+            <!--Grid for question-->
+            <Frame Grid.Row="2"
+                   Padding="0"
+                   HasShadow="False"
+                   BackgroundColor="#e0e0e0"
+                   >
+                <local:CustomEditor
+                    Margin="10,0"
+                    Placeholder="Your question here"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    HeightRequest="200"
+                    FontSize="12"
+                    Text="{Binding Question}"
+                    FontFamily="{StaticResource Key=MontserratSemiBold}"
+                />
+            </Frame>
+            <!--Random Text labels-->
+            <Frame Grid.Row="3"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   BackgroundColor="#e0e0e0"
+                   Margin="0,10"
+                   HeightRequest="100"
+                   HasShadow="False"
+                   >
+                <Grid RowDefinitions="Auto,Auto"
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      Margin="10">
+                    <Grid HorizontalOptions="FillAndExpand"
+                          VerticalOptions="FillAndExpand"
+                          ColumnDefinitions="Auto,Auto"
+                          Grid.Row="0"
+                          >
+                        <Image
+                            Grid.Column="0"
+                            Source="Dot.png"
+                            Aspect="AspectFit"
+                            VerticalOptions="Start"
+                            Margin="0,7"
+                        />
+                        <Label Grid.Column="1"
+                          
+                           Text="Be specific, ask questions about the product and not about the price, delivery, services etc."
+                           FontFamily="{StaticResource Key=MontserratSemiBold}"
+                           TextColor="Black"
+                           FontSize="12"
+                        />
+                    </Grid>
+
+                    <Grid HorizontalOptions="FillAndExpand"
+                          VerticalOptions="FillAndExpand"
+                          ColumnDefinitions="Auto,Auto"
+                          Grid.Row="1"
+                          >
+                        <Image
+                            
+                            Grid.Column="0"
+                            Source="Dot.png"
+                            Aspect="AspectFit"
+                            VerticalOptions="Start"
+                            Margin="0,7"
+                        />
+                        <Label Grid.Column="1"
+                          
+                           Text="Ask for information which is not captured in the product specification."
+                           FontFamily="{StaticResource Key=MontserratSemiBold}"
+                           TextColor="Black"
+                           FontSize="12"
+                        />
+                    </Grid>
+                </Grid>
+            </Frame>
+
+            <Button Grid.Row="4"
+                    Text="Submit"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    BackgroundColor="#FF6464"
+                    VerticalOptions="End"
+                    Margin="15,0,15,15"
+                    CornerRadius="30"
+                    Command="{Binding PostQuestion}"
+                    FontFamily="{StaticResource Key=MontserratBold}"
+                    
+            />
+
+
+
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
+
